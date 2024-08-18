@@ -1,0 +1,30 @@
+.container {
+    gap: 10px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    max-width: 1000px;
+    border-radius: 10px;
+    flex-direction: column;
+    border: 1px solid #aeaeae;
+}
+
+.topBar {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
+    justify-content: space-between;
+}
+
+.topBarText {
+    margin: 10px;
+}
+
+.mainContent {
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}

@@ -27,17 +27,17 @@ export default function Home() {
       actionComponent = <></>;
   }
 
-  const wallets = [{}];
+  const wallets = [];
 
   return (
-    <div>
+    <div className={styles.container}>
       {/* top bar */}
-      <div>
-        <div>wallet address</div>
-        <div>balance</div>
+      <div className={styles.topBar}>
+        <div className={styles.topBarText}>wallet address</div>
+        <div className={styles.topBarText}>balance</div>
       </div>
       {/* main content */}
-      <div>
+      <div className={styles.mainContent}>
         {
           // overlay
           wallets.length > 0 && <div></div>
