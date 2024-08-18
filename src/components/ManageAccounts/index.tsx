@@ -1,11 +1,12 @@
-import { DelegateTokensSection } from "./DelegateTokensSection";
+import styles from "./manageAccounts.module.css";
 import { TokenAccountsSection } from "./TokenAccountsSection";
+import { DelegateTokensSection } from "./DelegateTokensSection";
 
 export function ManageAccounts({}) {
     const accounts = [{}];
 
     return (
-        <div>
+        <div className={styles.manageAccountsWrapper}>
             <TokenAccountsSection />
             <hr />
             <DelegateTokensSection />

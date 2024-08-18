@@ -1,0 +1,10 @@
+.transferWrapper {
+    gap: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.transferButton {
+    width: 100%;
+}

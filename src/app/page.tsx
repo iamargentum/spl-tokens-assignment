@@ -39,26 +39,56 @@ export default function Home() {
       </div>
       {/* main content */}
       <div className={styles.mainContent}>
-        {
-          // overlay
-          wallets.length <= 0 && <Connect />
-        }
         {/* actual content */}
-        <div>
-          <div>
-            <button onClick={() => setSelectedTab(ACTION_TABS.manage_accounts)}>
+        <div className={styles.actionsWrapper}>
+          <div  className={styles.tabSelectorWrapper}>
+            <div
+              className={
+                selectedTab === ACTION_TABS.manage_accounts ?
+                styles.tabButtonSelected :
+                styles.tabButton
+              }
+              onClick={
+                () => setSelectedTab(ACTION_TABS.manage_accounts)
+              }
+            >
               manage accounts
-            </button>
-            <button onClick={() => setSelectedTab(ACTION_TABS.mint_burn)}>
+            </div>
+            <div
+              className={
+                selectedTab === ACTION_TABS.mint_burn ?
+                styles.tabButtonSelected :
+                styles.tabButton
+              }
+              onClick={
+                () => setSelectedTab(ACTION_TABS.mint_burn)
+              }
+            >
               mint/burn
-            </button>
-            <button onClick={() => setSelectedTab(ACTION_TABS.transfer)}>
+            </div>
+            <div
+              className={
+                selectedTab === ACTION_TABS.transfer ?
+                styles.tabButtonSelected :
+                styles.tabButton
+              }
+              onClick={
+                () => setSelectedTab(ACTION_TABS.transfer)
+              }
+            >
               transfer
-            </button>
+            </div>
           </div>
-          {actionComponent}
+          <div className={styles.actionComponentsWrapper}>
+            {actionComponent}
+          </div>
         </div>
       </div>
+
+      {/* connect wallet overlay */}
+      {
+          // wallets.length <= 0 && <Connect />
+      }
     </div>
   );
 }

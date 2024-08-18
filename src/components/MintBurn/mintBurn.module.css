@@ -1,0 +1,15 @@
+.mintBurnWrapper {
+    gap: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mintBurnButtonWrapper {
+    gap: 10px;
+    display: flex;
+}
+
+.mintBurnButton {
+    width: 100%;
+}
