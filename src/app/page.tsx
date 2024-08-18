@@ -6,6 +6,7 @@ import { ACTION_TABS } from "@/constants";
 import { Transfer } from "@/components/Transfer";
 import { MintBurn } from "@/components/MintBurn";
 import { ManageAccounts } from "@/components/ManageAccounts";
+import { Connect } from "@/components/Wallet/Connect";
 
 export default function Home() {
 
@@ -40,7 +41,7 @@ export default function Home() {
       <div className={styles.mainContent}>
         {
           // overlay
-          wallets.length > 0 && <div></div>
+          wallets.length <= 0 && <Connect />
         }
         {/* actual content */}
         <div>
