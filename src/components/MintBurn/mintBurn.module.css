@@ -11,5 +11,20 @@
 }
 
 .mintBurnButton {
+    gap: 10px;
     width: 100%;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+}
+
+.mintBurnButton svg {
+    fill: #ffffff;
+    transition: 0.1s ease-in-out all;
+}
+
+.mintBurnButton:hover svg {
+    fill: #2e2e2e;
 }

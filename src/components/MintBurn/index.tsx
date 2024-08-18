@@ -1,3 +1,5 @@
+import { BurnIcon } from "../../../public/burn";
+import { MintIcon } from "../../../public/mint";
 import styles from "./mintBurn.module.css";
 
 export function MintBurn({}) {
@@ -10,8 +12,18 @@ export function MintBurn({}) {
             <input type="number" placeholder="enter amount" />
 
             <div className={styles.mintBurnButtonWrapper}>
-                <button className={styles.mintBurnButton}>mint</button>
-                <button className={styles.mintBurnButton}>burn</button>
+                <button className={styles.mintBurnButton}>
+                    <span>
+                        mint
+                    </span>
+                    <MintIcon />
+                </button>
+                <button className={styles.mintBurnButton}>
+                    <span>
+                        burn
+                    </span>
+                    <BurnIcon />
+                </button>
             </div>
         </div>
     )

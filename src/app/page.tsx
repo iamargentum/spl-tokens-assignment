@@ -87,7 +87,7 @@ export default function Home() {
 
       {/* connect wallet overlay */}
       {
-          // wallets.length <= 0 && <Connect />
+          wallets.length <= 0 && <Connect />
       }
     </div>
   );

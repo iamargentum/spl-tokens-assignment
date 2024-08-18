@@ -5,16 +5,14 @@
     display: flex;
     max-width: 1000px;
     position: relative;
-    border-radius: 10px;
     flex-direction: column;
-    border: 1px solid #aeaeae;
+    border: 1px solid #2e2e2e;
 }
 
 .topBar {
     display: flex;
     align-items: center;
-    border-radius: 10px;
-    border: 1px solid #aeaeae;
+    border: 1px solid #2e2e2e;
     justify-content: space-between;
 }
 
@@ -34,22 +32,22 @@
 .tabButton {
     padding: 10px;
     cursor: pointer;
-    border-radius: 10px 10px 0px 0px;
     transition: 0.1s ease-in-out all;
 }
 
 .tabButtonSelected {
+    margin-bottom: -1px;
     padding: 10px;
     cursor: pointer;
-    border-left: 1px solid #aeaeae;
-    border-right: 1px solid #aeaeae;
-    border-top: 1px solid #aeaeae;
+    border-left: 1px solid #2e2e2e;
+    border-right: 1px solid #2e2e2e;
+    border-top: 1px solid #2e2e2e;
     border-bottom: 1px solid #ffffff;
-    border-radius: 10px 10px 0px 0px;
 }
 
 .tabButton:hover {
-    background-color: #aeaeae;
+    color: #ffffff;
+    background-color: #2e2e2e;
 }
 
 .actionsWrapper {
@@ -58,6 +56,5 @@
 
 .actionComponentsWrapper {
     width: 100%;
-    border: 1px solid #aeaeae;
-    border-radius: 0px 10px 10px 10px;
+    border: 1px solid #2e2e2e;
 }
