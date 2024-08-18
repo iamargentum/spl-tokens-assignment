@@ -1,0 +1,16 @@
+.wallet-adapter-button-trigger{
+    all:unset !important;
+    border: none !important;
+    padding: 10px !important;
+    color: #ffffff !important;
+    border-radius: none !important;
+    border: 1px solid #2e2e2e !important;
+    background-color: #2e2e2e !important;
+    transition: 0.1s ease-in-out all !important;
+}
+
+.wallet-adapter-button-trigger:hover {
+    cursor: pointer !important;
+    color: #2e2e2e !important;
+    background-color: #ffffff !important;
+}
