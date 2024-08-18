@@ -1,8 +1,7 @@
 import { ReactNode, useMemo } from "react";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base"
-import { WalletConnectButton, WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { PhantomWalletAdapter, UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 
 import '@solana/wallet-adapter-react-ui/styles.css';
