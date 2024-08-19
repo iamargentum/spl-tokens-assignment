@@ -17,7 +17,26 @@
 }
 
 .topBarText {
+    gap: 10px;
     margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.topBarIconButton {
+    padding: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid #2e2e2e;
+    background-color: #2e2e2e;
+    transition: 0.1s ease-in-out all;
+    font-variation-settings: 'wght' 200;
+}
+
+.topBarIconButton:hover {
+    color: #2e2e2e;
+    cursor: pointer;
+    background-color: #ffffff;
 }
 
 .mainContent {
