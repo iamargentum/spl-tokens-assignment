@@ -37,7 +37,12 @@ export function TokenManager() {
       <div className={styles.container}>
         {/* top bar */}
         <div className={styles.topBar}>
-          <div className={styles.topBarText}>wallet address</div>
+          <div className={styles.topBarText}>
+            wallet address
+            <span className="material-symbols-outlined">
+              content_copy
+            </span>
+          </div>
           <div className={styles.topBarText}>balance</div>
         </div>
         {/* main content */}
