@@ -1,32 +1,44 @@
+import { useState } from "react";
+import styles from "./tokenAccountsSection.module.css";
+
 export function TokenAccountsSection({}) {
-    const accounts = [{}];
+    const [accounts, setAccounts] = useState([]);
+
     return (
-        <div>
-            <div>
-                <p>token accounts</p>
+        <div className={styles.tokenAccountsContainer}>
+            <div className={styles.tokenAccountsTopBar}>
+                <h3>token accounts</h3>
                 <button>create new +</button>
             </div>
 
-            <div>
-                <table>
-                    <thead>
+            <table className={styles.tokenAccountsTable}>
+                <thead>
+                    <tr className={styles.tokenAccountsTableHeading}>
+                        <th className={styles.addressDataCell}>address</th>
+                        <th className={styles.balanceDataCell}>
+                            <span className={styles.balanceDataCellSpan}>
+                                balance
+                                <span className="material-symbols-outlined">
+                                    refresh
+                                </span>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        accounts.length > 0 ?
+                        accounts.map((a, aIndex) => (
+                            <tr key={`account_${aIndex}`}></tr>
+                        )) :
                         <tr>
-                            <th>address</th>
-                            <th>balance</th>
-                            <th>
-                                <button>refresh</button>
-                            </th>
+                            <td colSpan={2} className={styles.noTokenAccountsTextCell}>
+                                no token accounts
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            accounts.map((a, aIndex) => (
-                                <tr key={`account_${aIndex}`}></tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
     )
 }

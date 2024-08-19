@@ -1,0 +1,50 @@
+.tokenAccountsContainer {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tokenAccountsTopBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tokenAccountsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tokenAccountsTableHeading {
+    border-bottom: 1px solid #aeaeae;
+}
+
+.tokenAccountsTableHeading th {
+    padding: 10px;
+}
+
+.tokenAccountsTableDataRow > tr > td {
+    padding: 10px;
+}
+
+.addressDataCell {
+    text-align: left;
+}
+
+.balanceDataCell {
+    width: 20%;
+    text-align: right;
+}
+
+.balanceDataCellSpan {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.noTokenAccountsTextCell {
+    padding: 20px;
+    color: #aeaeae;
+    text-align: center;
+
+}
