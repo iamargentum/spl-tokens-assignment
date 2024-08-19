@@ -89,9 +89,7 @@ export function TokenManager() {
         </div>
   
         {/* connect wallet overlay */}
-        {
-            !!wallet ? <></> : <Connect />
-        }
+        { !wallet && <Connect /> }
       </div>
     );
   }
