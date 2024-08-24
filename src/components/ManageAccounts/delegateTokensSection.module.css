@@ -1,0 +1,49 @@
+.delegateTokensTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.delegateTokensTableHeadingRow {
+    border-bottom: 1px solid #aeaeae;
+}
+
+.delegateTokensTableHeadingRow th {
+    padding: 10px;
+}
+
+.delegateTokensTableHeadingAddress {
+    width: 40%;
+}
+
+.delegateTokensTableHeadingAmount {
+    width: 40%;
+}
+
+.delegateTokensTableHeadingAction {
+    width: 20%;
+}
+
+.delegateTokensDataBody tr {
+    border-bottom: 0.5px solid #eeeeee;
+}
+
+.delegateTokensDataBody td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.delegateTokensDataBody input {
+    width: 80%;
+}
+
+.delegateTokensDataRowAddress {
+    
+}
+
+.delegateTokensDataRowAmount {
+    text-align: center;
+}
+
+.delegateTokensDataRowAction {
+    text-align: center;
+}

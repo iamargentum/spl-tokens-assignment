@@ -8,7 +8,7 @@ export function ManageAccounts({}) {
     return (
         <div className={styles.manageAccountsWrapper}>
             <TokenAccountsSection />
-            <hr />
+            <hr className={styles.accountsManagerDivider} />
             <DelegateTokensSection />
         </div>
     )
