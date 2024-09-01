@@ -9,7 +9,7 @@ export function TokenCreator({ setToken }: {setToken: Function}) {
 
     const { connection } = useConnection();
 
-    const { wallet } = useWallet();
+    const { wallet, sendTransaction } = useWallet();
 
     const publicKey = wallet?.adapter?.publicKey;
 
@@ -32,10 +32,14 @@ export function TokenCreator({ setToken }: {setToken: Function}) {
                 accountKeyPair.publicKey,
                 decimals || 9,
                 publicKey,
-                publicKey,
-                programId
+                publicKey
             )
         );
+
+        await sendTransaction(transaction, connection, {
+            signers: [accountKeyPair],
+            preflightCommitment: "confirmed"
+        });
 
         setToken(accountKeyPair);
     }, [connection, decimals, publicKey, setToken]);
