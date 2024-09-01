@@ -12,6 +12,7 @@
 
 .tokenAccountsTable {
     width: 100%;
+    margin-bottom: 20px;
     border-collapse: collapse;
 }
 
@@ -51,4 +52,13 @@
 
 .refreshButton {
     cursor: pointer;
+}
+
+.tokenAccountAddressDataCell {
+    margin-left: 5px;
+}
+
+.tokenAccountBalanceDataCell {
+    text-align: right;
+    margin-right: 5px;
 }

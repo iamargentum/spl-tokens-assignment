@@ -11,6 +11,9 @@ export function TokenCreator({ setToken }: {setToken: Function}) {
 
     const { wallet, sendTransaction } = useWallet();
 
+    console.log("wallet from create token thingy is ", wallet);
+    
+
     const publicKey = wallet?.adapter?.publicKey;
 
     const createToken = useCallback(async () => {

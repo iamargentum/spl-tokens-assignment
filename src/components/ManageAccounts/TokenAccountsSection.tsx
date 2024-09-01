@@ -3,12 +3,12 @@ import { TokenManagerContext } from "../TokenManager";
 import styles from "./tokenAccountsSection.module.css";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-import { createAssociatedTokenAccount, createAssociatedTokenAccountInstruction, createInitializeAccountInstruction, getAccountLenForMint, getAssociatedTokenAddress, getMint, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { createAssociatedTokenAccount, createAssociatedTokenAccountInstruction, createInitializeAccountInstruction, getAccount, getAccountLenForMint, getAssociatedTokenAddress, getMint, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { getShortenedString } from "@/utils/common";
 
 export function TokenAccountsSection() {
     
-    const [tokenBalance, setTokenBalance] = useState('0');
+    const [tokenBalance, setTokenBalance] = useState<BigInt>(BigInt(-1));
 
     const tokenAccountsContext = useContext(TokenManagerContext);
 
@@ -58,15 +58,19 @@ export function TokenAccountsSection() {
     console.log("accounts changed - ", accounts);
 
     const getTokenAccountBalance = useCallback(async () => {
-        if(!token) return;
+        if(!token || !publicKey) return;
 
-        const res = await connection.getTokenAccountBalance(
-            token.publicKey,
-            "confirmed"
-        );
+        console.log("accounts[0] is ", accounts[0].toBase58());
+        
 
-        setTokenBalance(res.value.uiAmountString || "0");
-    }, [connection, token]);
+        const account = await getAccount(connection, accounts[0])
+        .catch(err => {
+            console.log("error occurred while fetching balance for ", accounts[0], " - ", err);
+            return {amount: BigInt(-1)};
+        });
+
+        setTokenBalance(account.amount);
+    }, [accounts, connection, publicKey, token]);
 
     useEffect(() => {
         if(accounts.length > 0) getTokenAccountBalance();
@@ -98,11 +102,15 @@ export function TokenAccountsSection() {
                         accounts.length > 0 ?
                             accounts.map((a, aIndex) => (
                                 <tr key={`account_${aIndex}`}>
-                                    <td>
+                                    <td className={styles.tokenAccountAddressDataCell}>
                                         {getShortenedString(a.toBase58(), 10)}
                                     </td>
-                                    <td>
-                                        {tokenBalance}
+                                    <td className={styles.tokenAccountBalanceDataCell}>
+                                        {
+                                            tokenBalance === BigInt(-1) ?
+                                            "NA" :
+                                            tokenBalance.toString()
+                                        }
                                     </td>
                                 </tr>
                             )) :
