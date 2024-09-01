@@ -5,6 +5,7 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 
 import '@solana/wallet-adapter-react-ui/styles.css';
+import { PhantomWalletAdapter, UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
 
 export function Wallet({ children }: {children: ReactNode}) {
     const network = WalletAdapterNetwork.Devnet;
@@ -12,7 +13,8 @@ export function Wallet({ children }: {children: ReactNode}) {
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
     const wallets = useMemo(() => [
-        // new UnsafeBurnerWalletAdapter(),
+        new UnsafeBurnerWalletAdapter(),
+        new PhantomWalletAdapter()
     ],
     // eslint-disable-next-line
     [network]);
