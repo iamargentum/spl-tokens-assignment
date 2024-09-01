@@ -10,6 +10,7 @@ import { Keypair, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { TokenCreator } from "./Create";
+import { getShortenedString } from "@/utils/common";
 
 type TokenManagerContext = {
   tokenAccounts: {
@@ -46,7 +47,7 @@ export function TokenManager() {
       break;
     default:
       actionComponent = <></>;
-  }  
+  }
 
   return (
     <div className={styles.container}>
@@ -127,12 +128,7 @@ function TopBar() {
 
   const publicKey = wallet?.adapter?.publicKey;
   const walletPublicAddress = publicKey?.toBase58();
-  const shortenedPublicAddress = 
-    walletPublicAddress?.substring(0, 5) +
-    "..." +
-    walletPublicAddress?.substring(
-      walletPublicAddress.length - 5, walletPublicAddress.length
-    );
+  const shortenedPublicAddress = getShortenedString(walletPublicAddress || "");
   
   const fetchBalance = useCallback(() => {
     if(!publicKey) return;
