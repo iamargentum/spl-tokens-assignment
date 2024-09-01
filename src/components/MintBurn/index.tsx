@@ -5,7 +5,7 @@ import styles from "./mintBurn.module.css";
 import { TokenManagerContext } from "../TokenManager";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey, Transaction } from "@solana/web3.js";
-import { createMintToCheckedInstruction } from "@solana/spl-token";
+import { createBurnCheckedInstruction, createMintToCheckedInstruction } from "@solana/spl-token";
 
 export function MintBurn({}) {
     const [tokensToMint, setTokensToMint] = useState(0);
@@ -27,6 +27,24 @@ export function MintBurn({}) {
             createMintToCheckedInstruction(
                 tokenMint,
                 new PublicKey(selectedAccount),
+                publicKey,
+                BigInt(tokensToMint),
+                9
+            )
+        );
+
+        await sendTransaction(transaction, connection, {
+            preflightCommitment: "confirmed"
+        });
+    }, [connection, publicKey, selectedAccount, sendTransaction, tokenMint, tokensToMint]);
+
+    const burn = useCallback(async () => {
+        if(!tokenMint || !publicKey) return;
+
+        const transaction = new Transaction().add(
+            createBurnCheckedInstruction(
+                new PublicKey(selectedAccount),
+                tokenMint,
                 publicKey,
                 BigInt(tokensToMint),
                 9
@@ -65,7 +83,7 @@ export function MintBurn({}) {
                     </span>
                     <MintIcon />
                 </button>
-                <button className={styles.mintBurnButton}>
+                <button className={styles.mintBurnButton} onClick={burn}>
                     <span>
                         burn
                     </span>
