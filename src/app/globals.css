@@ -22,6 +22,28 @@ button:hover {
     background-color: #ffffff;
 }
 
+button:disabled {
+    color: #cecece;
+    cursor: not-allowed;
+    border: 1px solid #cecece;
+    background-color: #ffffff;
+}
+
+button:disabled:hover {
+    color: #cecece;
+    cursor: not-allowed;
+    border: 1px solid #cecece;
+    background-color: #ffffff;
+}
+
+button:disabled svg {
+    fill: #cecece !important;
+}
+
+button:disabled:hover svg {
+    fill: #cecece !important;
+}
+
 input {
     padding: 10px;
     color: #2e2e2e;
