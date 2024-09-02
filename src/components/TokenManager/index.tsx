@@ -24,14 +24,11 @@ export const TokenManagerContext = createContext<TokenManagerContext | null>(nul
 
 export function TokenManager() {
 
-  const { connection } = useConnection();
-
   const [token, setToken] = useState<Keypair | undefined>();
   const [tokenAccounts, setTokenAccounts] = useState<PublicKey[]>([]);
   const [selectedTab, setSelectedTab] = useState(ACTION_TABS.manage_accounts);
 
   const { wallet } = useWallet();
-  const publicKey = wallet?.adapter?.publicKey;
 
   let actionComponent;
 
