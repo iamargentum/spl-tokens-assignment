@@ -83,6 +83,8 @@ export function Transfer() {
         setToAccount(Keypair.generate().publicKey.toBase58());
     }, []);
 
+    const transferButtonDisabled = !fromAccount || !toAccount || !amount || (amount <= 0);
+
     return (
         <div className={styles.transferWrapper}>
             {/* from account selection */}
@@ -118,7 +120,13 @@ export function Transfer() {
             />
 
             {/* transfer button */}
-            <button className={styles.transferButton} onClick={transfer}>transfer</button>
+            <button
+                onClick={transfer}
+                disabled={transferButtonDisabled}
+                className={styles.transferButton}
+            >
+                transfer
+            </button>
         </div>
     );
 }
