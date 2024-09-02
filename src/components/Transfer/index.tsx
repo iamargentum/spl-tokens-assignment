@@ -3,7 +3,7 @@ import styles from "./transfer.module.css";
 import { TokenManagerContext } from "../TokenManager";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
-import { createAssociatedTokenAccountInstruction, createTransferCheckedInstruction, getAssociatedTokenAddress } from "@solana/spl-token";
+import { createAssociatedTokenAccountInstruction, createTransferCheckedInstruction, createTransferInstruction, getAssociatedTokenAddress } from "@solana/spl-token";
 
 export function Transfer() {
     const [amount, setAmount] = useState(0);
@@ -29,7 +29,11 @@ export function Transfer() {
         ) return;
 
         const toAccountPublicKey = new PublicKey(toAccount);
-        const fromAccountPublicKey = new PublicKey(fromAccount);
+
+        const srcAccount = await getAssociatedTokenAddress(
+            tokenMint,
+            publicKey
+        );
 
         const destAccount = await getAssociatedTokenAddress(
             tokenMint,
@@ -44,24 +48,28 @@ export function Transfer() {
             transaction.add(
                 createAssociatedTokenAccountInstruction(
                     publicKey,
+                    destAccount,
                     toAccountPublicKey,
-                    publicKey,
                     tokenMint
                 )
             );
 
             // also add it to our accounts list
-            accountsSetterFn((prev: PublicKey[]) => [...prev, toAccountPublicKey]);
+            accountsSetterFn((prev: PublicKey[]) => {
+                if(
+                    prev.findIndex(element => element.toBase58() === destAccount.toBase58()) === -1
+                ) return [...prev, destAccount];
+
+                return prev;
+            });
         }
 
         transaction.add(
-            createTransferCheckedInstruction(
-                fromAccountPublicKey,
-                tokenMint,
-                toAccountPublicKey,
+            createTransferInstruction(
+                srcAccount,
+                destAccount,
                 publicKey,
-                amount,
-                9
+                amount
             )
         );
 
