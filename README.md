@@ -5,7 +5,7 @@ This is my submission for session 2 (spl tokens). This is a simple token managem
 The tool can be accessed [here](https://iamargentum.github.io/spl-tokens-assignment/).
 
 Here's a video of how it looks (to be added) -
-[Screencast from 03-09-24 03:17:38 AM IST.webm](https://github.com/user-attachments/assets/053555d2-23d5-4074-8979-9632672585b5)
+<video src="https://github.com/user-attachments/assets/053555d2-23d5-4074-8979-9632672585b5"></video>
 
 To set this project up on your machine, follow the steps below. Also, make sure you have Phantom wallet installed in your browser as an extension and you have an account set up.
 
