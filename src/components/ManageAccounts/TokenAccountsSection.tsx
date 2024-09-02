@@ -25,8 +25,6 @@ export function TokenAccountsSection() {
     const { connection } = useConnection();
 
     const createTokenAccount = useCallback(async () => {
-        console.log("create token account called - ", token, publicKey);
-
         if (!token || !publicKey) return;
 
         const associatedTokenAddress = await getAssociatedTokenAddress(
@@ -45,10 +43,7 @@ export function TokenAccountsSection() {
 
         await sendTransaction(transaction, connection, {
             preflightCommitment: "confirmed"
-        });
-
-        console.log("token account created - ", associatedTokenAddress);
-        
+        });        
 
         setTokenAccounts((prev: PublicKey[]) => [...prev, associatedTokenAddress]);
 
@@ -64,9 +59,10 @@ export function TokenAccountsSection() {
             return {amount: BigInt(-1)};
         });
 
-        setTokenBalance({
+        setTokenBalance(prev => ({
+            ...prev,
             [accountPublicKeyString]: account.amount
-        });
+        }));
     }, [connection, publicKey, token]);
 
     const refreshTokenAccountBalances = useCallback(() => {
@@ -77,8 +73,8 @@ export function TokenAccountsSection() {
     }, [accounts, getTokenAccountBalance]);
 
     useEffect(() => {
-        // if(accounts.length > 0) getTokenAccountBalance();
-    }, [accounts, getTokenAccountBalance]);
+        if(accounts.length > 0) refreshTokenAccountBalances();
+    }, [accounts, refreshTokenAccountBalances]);
 
     return (
         <div className={styles.tokenAccountsContainer}>
