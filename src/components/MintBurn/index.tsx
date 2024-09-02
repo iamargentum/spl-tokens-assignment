@@ -56,6 +56,12 @@ export function MintBurn({}) {
         });
     }, [connection, publicKey, selectedAccount, sendTransaction, tokenMint, tokensToMint]);
 
+    const mintButtonDisabled = !selectedAccount || (tokensToMint <= 0) || !tokensToMint;
+    const burnButtonDisabled = (
+        !selectedAccount ||
+        (selectedAccount !== accounts?.[0]?.toBase58())
+    ) || (tokensToMint <= 0) || !tokensToMint;
+
     return (
         <div className={styles.mintBurnWrapper}>
             <select value={selectedAccount} onChange={(e) => setSelectedAccount(e.target.value)}>
@@ -77,13 +83,13 @@ export function MintBurn({}) {
             />
 
             <div className={styles.mintBurnButtonWrapper}>
-                <button className={styles.mintBurnButton} onClick={mint}>
+                <button className={styles.mintBurnButton} onClick={mint} disabled={mintButtonDisabled}>
                     <span>
                         mint
                     </span>
                     <MintIcon />
                 </button>
-                <button className={styles.mintBurnButton} onClick={burn}>
+                <button className={styles.mintBurnButton} onClick={burn} disabled={burnButtonDisabled}>
                     <span>
                         burn
                     </span>
