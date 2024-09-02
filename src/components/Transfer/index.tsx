@@ -96,11 +96,12 @@ export function Transfer() {
             </select>
 
             {/* to account */}
-            <div>
+            <div className={styles.toAccountInputWrapper}>
                 <input
                     type="text"
                     value={toAccount}
                     placeholder="to account address"
+                    className={styles.toAccountInput}
                     onChange={(e) => setToAccount(e.target.value)}
                 />
                 <button onClick={createRandomDestinationAccount}>
