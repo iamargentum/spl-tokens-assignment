@@ -1,7 +1,8 @@
+import { getShortenedString } from "@/utils/common";
 import styles from "./delegateTokensSection.module.css";
 
 export function DelegateTokensSection({}) {
-    const delegatedTokens = [{}];
+    const delegatedTokens: Array<{address: string, delegatedAmount: number}> = [];
 
     return (
         <div>
@@ -23,9 +24,17 @@ export function DelegateTokensSection({}) {
                             delegatedTokens.map((t, tIndex) => (
                                 <tr key={`token_account_${tIndex}`} className={styles.delegateTokensDataRow}>
                                     {/* account */}
-                                    <td className={styles.delegateTokensDataRowAddress}>fasdfadsfa</td>
+                                    <td className={styles.delegateTokensDataRowAddress}>
+                                        {
+                                            getShortenedString(t.address)
+                                        }
+                                    </td>
                                     {/* amount */}
-                                    <td className={styles.delegateTokensDataRowAmount}>3242364257</td>
+                                    <td className={styles.delegateTokensDataRowAmount}>
+                                        {
+                                            t.delegatedAmount
+                                        }
+                                    </td>
                                     {/* action */}
                                     <td className={styles.delegateTokensDataRowAction}>
                                         <button>revoke</button>
