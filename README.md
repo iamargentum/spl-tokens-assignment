@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SPL tokens assignment
+
+This is my submission for session 2 (spl tokens). This is a simple token management tool that runs on the Solana devnet. You can **create** token mints, **create** ATAs, **mint** and **burn** tokens to and from the token accounts, **transfer** tokens from the token accounts and **delegate**(WIP) tokens.
+
+The tool can be accessed [here](https://iamargentum.github.io/spl-tokens-assignment/).
+
+Here's a video of how it looks (to be added) -
+
+
+To set this project up on your machine, follow the steps below. Also, make sure you have Phantom wallet installed in your browser as an extension and you have an account set up.
 
 ## Getting Started
 
