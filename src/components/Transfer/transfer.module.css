@@ -8,3 +8,13 @@
 .transferButton {
     width: 100%;
 }
+
+.toAccountInputWrapper {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.toAccountInput {
+    width: 100%;
+}
