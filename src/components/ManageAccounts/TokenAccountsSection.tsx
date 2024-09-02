@@ -8,7 +8,7 @@ import { getShortenedString } from "@/utils/common";
 
 export function TokenAccountsSection() {
     
-    const [tokenBalance, setTokenBalance] = useState<BigInt>(BigInt(-1));
+    const [tokenBalance, setTokenBalance] = useState<{[accountAddress: string]: BigInt}>({});
 
     const tokenAccountsContext = useContext(TokenManagerContext);
 
@@ -55,32 +55,35 @@ export function TokenAccountsSection() {
         return associatedTokenAddress;
     }, [connection, publicKey, sendTransaction, setTokenAccounts, token]);
 
-    console.log("accounts changed - ", accounts);
-
-    const getTokenAccountBalance = useCallback(async () => {
+    const getTokenAccountBalance = useCallback(async (accountPublicKeyString: string) => {
         if(!token || !publicKey) return;
 
-        console.log("accounts[0] is ", accounts[0].toBase58());
-        
-
-        const account = await getAccount(connection, accounts[0])
+        const account = await getAccount(connection, new PublicKey(accountPublicKeyString))
         .catch(err => {
-            console.log("error occurred while fetching balance for ", accounts[0], " - ", err);
+            console.log("error occurred while fetching balance for ", accountPublicKeyString, " - ", err);
             return {amount: BigInt(-1)};
         });
 
-        setTokenBalance(account.amount);
-    }, [accounts, connection, publicKey, token]);
+        setTokenBalance({
+            [accountPublicKeyString]: account.amount
+        });
+    }, [connection, publicKey, token]);
+
+    const refreshTokenAccountBalances = useCallback(() => {
+        for (let index = 0; index < accounts.length; index++) {
+            const element = accounts[index];
+            getTokenAccountBalance(element.toBase58());
+        }
+    }, [accounts, getTokenAccountBalance]);
 
     useEffect(() => {
-        if(accounts.length > 0) getTokenAccountBalance();
+        // if(accounts.length > 0) getTokenAccountBalance();
     }, [accounts, getTokenAccountBalance]);
 
     return (
         <div className={styles.tokenAccountsContainer}>
             <div className={styles.tokenAccountsTopBar}>
                 <h3>token accounts</h3>
-                <button onClick={createTokenAccount}>create new +</button>
             </div>
 
             <table className={styles.tokenAccountsTable}>
@@ -90,7 +93,7 @@ export function TokenAccountsSection() {
                         <th className={styles.balanceDataCell}>
                             <span className={styles.balanceDataCellSpan}>
                                 balance
-                                <span className={`material-symbols-outlined ${styles.refreshButton}`} onClick={getTokenAccountBalance}>
+                                <span className={`material-symbols-outlined ${styles.refreshButton}`} onClick={refreshTokenAccountBalances}>
                                     refresh
                                 </span>
                             </span>
@@ -107,16 +110,17 @@ export function TokenAccountsSection() {
                                     </td>
                                     <td className={styles.tokenAccountBalanceDataCell}>
                                         {
-                                            tokenBalance === BigInt(-1) ?
+                                            !tokenBalance?.[a.toBase58()] ?
                                             "NA" :
-                                            tokenBalance.toString()
+                                            tokenBalance[a.toBase58()]?.toString()
                                         }
                                     </td>
                                 </tr>
                             )) :
                             <tr>
                                 <td colSpan={2} className={styles.noTokenAccountsTextCell}>
-                                    no token accounts
+                                    <p>no token accounts</p>
+                                    <button onClick={createTokenAccount}>create new +</button>
                                 </td>
                             </tr>
                     }
